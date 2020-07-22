@@ -21,6 +21,12 @@
         var period = 1000;
 
         var index = 0;
+        var usersInCallback = [];
+
+        var userClickCallback = function(event) {
+          javascript: console.log(event.data.value);
+        }
+
         var updateTweets = function() {
           //update stream with new tweets every 'period'
           while(index < streams.home.length){
@@ -28,8 +34,8 @@
 
             //create container and elements for tweet info
             var $tweetContainer = $('<div class="tweet-container"></div>');
-            var $username = $('<h4></h4>');
-            var $timestamp = $('<h5></h5>');
+            var $username = $('<h4 class="username ' + tweet.user + '"></h4>');
+            var $timestamp = $('<h5 class="timestamp"></h5>');
             var $tweet = $('<p class="tweet"></p>');
 
             //add the element info
@@ -42,11 +48,21 @@
             $tweetContainer.append($timestamp);
             $tweetContainer.append($tweet);
             $tweetContainer.prependTo($stream);
+
+            //if the user doesn't have an onclick callback, add one for all present/future elements
+            if (!usersInCallback.includes(tweet.user)) {
+              $('.stream').on('click', '.' + tweet.user, {value: tweet.user}, userClickCallback);
+              usersInCallback.push(tweet.user)
+            }
+
             index++;
+
           }
           setTimeout(updateTweets, period);
-        }
+        };
+
         updateTweets();
+
       });
 
     </script>
