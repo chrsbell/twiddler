@@ -11,36 +11,42 @@
     </header>
     <textarea name="tweet-input">Say something!</textarea>
     <input class="button" type="submit" name="tweet-submit" value="Twiddle">
+    <section class="stream"></section>
     <script>
 
       $(document).ready(function(){
-        var $body = $('body');
 
-        javascript: console.log($body.html());
+        //target home-stream class
+        var $stream = $('.stream');
+        var period = 1000;
 
-        var index = streams.home.length - 1;
-        while(index >= 0){
-          var tweet = streams.home[index];
+        var index = 0;
+        var updateTweets = function() {
+          //update stream with new tweets every 'period'
+          while(index < streams.home.length){
+            var tweet = streams.home[index];
 
-          //create container and for tweet info
-          var $tweetContainer = $('<div class="tweet-container"></div>');
-          var $username = $('<h4></h4>');
-          var $timestamp = $('<h5></h5>');
-          var $tweet = $('<p class="tweet"></p>');
+            //create container and elements for tweet info
+            var $tweetContainer = $('<div class="tweet-container"></div>');
+            var $username = $('<h4></h4>');
+            var $timestamp = $('<h5></h5>');
+            var $tweet = $('<p class="tweet"></p>');
 
-          //add the element info
-          $username.text('@' + tweet.user);
-          $timestamp.text('');
-          $tweet.text(tweet.message);
+            //add the element info
+            $username.text('@' + tweet.user);
+            $timestamp.text(tweet.created_at);
+            $tweet.text(tweet.message);
 
-          //display tweet
-          $tweetContainer.append($username);
-          $tweetContainer.append($timestamp);
-          $tweetContainer.append($tweet);
-          $tweetContainer.appendTo($body);
-          index -= 1;
+            //display newest tweets first
+            $tweetContainer.append($username);
+            $tweetContainer.append($timestamp);
+            $tweetContainer.append($tweet);
+            $tweetContainer.prependTo($stream);
+            index++;
+          }
+          setTimeout(updateTweets, period);
         }
-
+        updateTweets();
       });
 
     </script>
