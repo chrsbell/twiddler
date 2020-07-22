@@ -6,18 +6,36 @@
     <link rel="stylesheet" href="stylesheets/main.css">
   </head>
   <body>
+    <header>
+      <h1>Twiddler</h1>
+    </header>
     <script>
 
       $(document).ready(function(){
         var $body = $('body');
-        $body.html('');
+
+        javascript: console.log($body.html());
 
         var index = streams.home.length - 1;
         while(index >= 0){
           var tweet = streams.home[index];
-          var $tweet = $('<div></div>');
-          $tweet.text('@' + tweet.user + ': ' + tweet.message);
-          $tweet.appendTo($body);
+
+          //create container and for tweet info
+          var $tweetContainer = $('<div class="tweet-container"></div>');
+          var $username = $('<h4></h4>');
+          var $timestamp = $('<h5></h5>');
+          var $tweet = $('<p class="tweet"></p>');
+
+          //add the element info
+          $username.text('@' + tweet.user);
+          $timestamp.text('');
+          $tweet.text(tweet.message);
+
+          //display tweet
+          $tweetContainer.append($username);
+          $tweetContainer.append($timestamp);
+          $tweetContainer.append($tweet);
+          $tweetContainer.appendTo($body);
           index -= 1;
         }
 
