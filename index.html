@@ -47,14 +47,19 @@
 
             //add the element info
             $username.text('@' + tweet.user);
-            $timestamp.text(tweet.created_at);
+            $timestamp.text(tweet.created_at.getHours() + ":"  + tweet.created_at.getMinutes() + ":" + tweet.created_at.getSeconds());
             $tweet.text(tweet.message);
 
+            $tweetContainer.append($tweet);
+
             //display newest tweets first
+            $tweetContainer.appendTo($stream);
+
+            var tweetHeight = $tweetContainer.height();
+            $timestamp.height(tweetHeight);
+            $username.height(tweetHeight);
             $userinfo.append($username);
             $userinfo.append($timestamp);
-            $tweetContainer.append($tweet);
-            $tweetContainer.appendTo($stream);
 
             //if the user doesn't have an onclick callback, add one for all present/future elements
             if (!usersInCallback.includes(tweet.user)) {

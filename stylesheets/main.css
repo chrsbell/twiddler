@@ -81,6 +81,7 @@ h1 {
 .col-usernames-timestamps {
   width: 25%;
   display: inline-block;
+  vertical-align: top;
 }
 
 /* column for timestamps */
@@ -88,6 +89,7 @@ h1 {
   text-align: right;
   width: 49%;
   display: inline-block;
+  vertical-align: top;
 }
 
 /* column for usernames */
@@ -96,6 +98,7 @@ h1 {
   /*margin-left: 50%;*/
   width: 49%;
   display: inline-block;
+  vertical-align: top;
 }
 
 /* container for each tweet */
