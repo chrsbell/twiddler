@@ -11,17 +11,24 @@
     </header>
     <textarea name="tweet-input">Say something!</textarea>
     <input class="button" type="submit" name="tweet-submit" value="Twiddle">
-    <section class="stream"></section>
+    <div class="row">
+      <<div class="grid">>
+        <div class="col-usernames-timestamps"></div>
+        <div class="col-tweets"></div>
+      </div>
+    </div>
     <script>
 
       $(document).ready(function(){
 
-        //target home-stream class
-        var $stream = $('.stream');
+        //target col-tweets section
+        var $stream = $('.col-tweets');
         var period = 1000;
 
         var index = 0;
         var usersInCallback = [];
+
+        var $userinfo = $('.col-usernames-timestamps');
 
         var userClickCallback = function(event) {
           javascript: console.log(event.data.value);
@@ -34,8 +41,8 @@
 
             //create container and elements for tweet info
             var $tweetContainer = $('<div class="tweet-container"></div>');
-            var $username = $('<h4 class="username col-1-2 ' + tweet.user + '"></h4>');
-            var $timestamp = $('<h5 class="timestamp col-2-2"></h5>');
+            var $username = $('<h4 class="username col-usernames ' + tweet.user + '"></h4>');
+            var $timestamp = $('<h5 class="timestamp col-timestamps"></h5>');
             var $tweet = $('<p class="tweet"></p>');
 
             //add the element info
@@ -44,14 +51,14 @@
             $tweet.text(tweet.message);
 
             //display newest tweets first
-            $tweetContainer.append($username);
-            $tweetContainer.append($timestamp);
+            $userinfo.append($username);
+            $userinfo.append($timestamp);
             $tweetContainer.append($tweet);
-            $tweetContainer.prependTo($stream);
+            $tweetContainer.appendTo($stream);
 
             //if the user doesn't have an onclick callback, add one for all present/future elements
             if (!usersInCallback.includes(tweet.user)) {
-              $('.stream').on('click', '.' + tweet.user, {value: tweet.user}, userClickCallback);
+              $('.col-tweets').on('click', '.' + tweet.user, {value: tweet.user}, userClickCallback);
               usersInCallback.push(tweet.user)
             }
 

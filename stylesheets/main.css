@@ -3,6 +3,8 @@
    License: none (public domain)
 */
 
+/* IRC client inspired styles */
+
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -24,42 +26,86 @@ time, mark, audio, video {
   vertical-align: baseline;
 }
 
-/** {
+* {
   border: 1px solid red !important;
-}*/
+}
 
-body {
+/*body {
   width: 50%;
   margin-left: 25%;
   margin-right: 25%;
   text-align: center;
-}
+}*/
 
 h1 {
   font-weight: bold;
   font-size: x-large;
 }
 
-/* column for usernames */
-.col-1-2 {
-  text-align: left;
-  width: 20%;
+.grid {
+  margin: 0 auto;
+  width: 960px;
+  overflow-y: scroll;
+  height:480px;
+}
+
+/*
+  ========================================
+  Rows
+  ========================================
+*/
+
+.row,
+.row-alt {
+  min-width: 960px;
+}
+.row {
+  background: #fff;
+  padding: 66px 0 44px 0;
+}
+
+/* column for list of users */
+.col-userlist {
+  /*margin-left: 75%;*/
+  width: 25%;
+  display: inline-block;
+}
+
+/* column for tweets */
+.col-tweets {
+  width: 49%;
+  display: inline-block;
+}
+
+/* column for usernames/timestamps */
+.col-usernames-timestamps {
+  width: 25%;
   display: inline-block;
 }
 
 /* column for timestamps */
-.col-2-2 {
+.col-timestamps {
   text-align: right;
-  width: 79%;
+  width: 49%;
   display: inline-block;
 }
 
+/* column for usernames */
+.col-usernames {
+  text-align: left;
+  /*margin-left: 50%;*/
+  width: 49%;
+  display: inline-block;
+}
+
+/* container for each tweet */
+
 .tweet-container {
-  margin-left: 20%;
-  margin-right: 20%;
-  display: block;
+  /*margin-left: 20%;
+  margin-right: 20%;*/
+  display: inline-block;
   width: 60%;
-  border: 2px solid #949599;
+  /*border: 2px solid #949599;*/
   border-radius: 2px;
   text-align: left;
 }
