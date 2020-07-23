@@ -24,6 +24,54 @@ time, mark, audio, video {
   vertical-align: baseline;
 }
 
+/** {
+  border: 1px solid red !important;
+}*/
+
+body {
+  width: 50%;
+  margin-left: 25%;
+  margin-right: 25%;
+  text-align: center;
+}
+
+h1 {
+  font-weight: bold;
+  font-size: x-large;
+}
+
+/* column for usernames */
+.col-1-2 {
+  text-align: left;
+  width: 20%;
+  display: inline-block;
+}
+
+/* column for timestamps */
+.col-2-2 {
+  text-align: right;
+  width: 79%;
+  display: inline-block;
+}
+
+.tweet-container {
+  margin-left: 20%;
+  margin-right: 20%;
+  display: block;
+  width: 60%;
+  border: 2px solid #949599;
+  border-radius: 2px;
+  text-align: left;
+}
+
+.tweet-container:hover {
+color: rgba(0, 0, 0, .5);
+}
+
+.username {
+  padding-right: 0;
+}
+
 textarea {
   resize: none;
 }
