@@ -12,7 +12,7 @@
     <textarea name="tweet-input">Say something!</textarea>
     <input class="button" type="submit" name="tweet-submit" value="Twiddle">
     <div class="row">
-      <<div class="grid">>
+      <div class="grid">>
         <div class="col-usernames-timestamps"></div>
         <div class="col-tweets"></div>
       </div>
@@ -39,8 +39,7 @@
           while(index < streams.home.length){
             var tweet = streams.home[index];
 
-            //create container and elements for tweet info
-            var $tweetContainer = $('<div class="tweet-container"></div>');
+            //create elements for tweet info
             var $username = $('<h4 class="username col-usernames ' + tweet.user + '"></h4>');
             var $timestamp = $('<h5 class="timestamp col-timestamps"></h5>');
             var $tweet = $('<p class="tweet"></p>');
@@ -50,16 +49,15 @@
             $timestamp.text(tweet.created_at.getHours() + ":"  + tweet.created_at.getMinutes() + ":" + tweet.created_at.getSeconds());
             $tweet.text(tweet.message);
 
-            $tweetContainer.append($tweet);
-
             //display newest tweets first
-            $tweetContainer.appendTo($stream);
-
-            var tweetHeight = $tweetContainer.height();
-            $timestamp.height(tweetHeight);
-            $username.height(tweetHeight);
+            $stream.append($tweet);
             $userinfo.append($username);
             $userinfo.append($timestamp);
+
+            //make sure containers are aligned
+            var tweetHeight = $tweet.height();
+            $timestamp.height(tweetHeight);
+            $username.height(tweetHeight);
 
             //if the user doesn't have an onclick callback, add one for all present/future elements
             if (!usersInCallback.includes(tweet.user)) {

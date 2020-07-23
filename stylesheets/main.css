@@ -101,9 +101,7 @@ h1 {
   vertical-align: top;
 }
 
-/* container for each tweet */
-
-.tweet-container {
+.tweet {
   /*margin-left: 20%;
   margin-right: 20%;*/
   display: inline-block;
@@ -113,7 +111,7 @@ h1 {
   text-align: left;
 }
 
-.tweet-container:hover {
+.tweet:hover {
 color: rgba(0, 0, 0, .5);
 }
 
