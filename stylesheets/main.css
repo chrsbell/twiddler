@@ -26,14 +26,18 @@ time, mark, audio, video {
   vertical-align: baseline;
 }
 
-* {
+/** {
   border: 1px solid red !important;
-}
+}*/
 
 body {
   width: 80%;
   margin-left: 10%;
   margin-right: 10%;
+}
+
+textarea {
+  width: 95%;
 }
 
 h1 {
@@ -113,8 +117,4 @@ color: rgba(0, 0, 0, .5);
 
 .username {
   padding-right: 0;
-}
-
-textarea {
-  resize: none;
 }
