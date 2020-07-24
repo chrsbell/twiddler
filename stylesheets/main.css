@@ -36,10 +36,12 @@ body {
   width: 80%;
   margin-left: 10%;
   margin-right: 10%;
+  font-family: 'IBM Plex Mono', monospace;
 }
 
 textarea {
   width: 95%;
+  background-color: black;
 }
 
 h1 {
@@ -47,14 +49,9 @@ h1 {
   font-size: x-large;
 }
 
-textarea,
-.button {
-  display: block;
-}
-
 .main-grid {
   margin: 0;
-  width: 60%;
+  width: 70%;
   display: inline-block;
   overflow-y: scroll;
   height:480px;
@@ -62,7 +59,7 @@ textarea,
 
 .side-grid {
   margin: 0;
-  width: 35%;
+  width: 25%;
   display: inline-block;
   overflow-y: scroll;
   height:480px;
@@ -77,8 +74,9 @@ textarea,
 
 /* column for tweets */
 .col-tweets {
-  width: 74%;
+  width: 73%;
   display: inline-block;
+  border-left: 1px solid;
 }
 
 /* wrapper column for usernames/timestamps */
@@ -106,9 +104,8 @@ textarea,
 
 .tweet {
   display: block;
-  /*border: 2px solid #949599;*/
-  border-radius: 2px;
   text-align: left;
+  padding-left: 5px;
 }
 
 .highlight {
