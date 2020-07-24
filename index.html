@@ -32,6 +32,16 @@
         var numTweets = 0;
         var numUsers = 0;
 
+        //colors for each user
+        var colors = ['blanchedalmond', 'palegoldenrod', 'forestgreen', 'cyan'];
+        //map each user to a color
+        var userColors = {};
+        var index = 0;
+        for (var user in streams.users) {
+          userColors[user.toString()] = colors[index];
+          index = (index + 1) % colors.length;
+        }
+
         var $userinfo = $('.col-userinfo');
         var $usernames = $('.col-usernames');
         var $timestamps = $('.col-timestamps');
@@ -74,6 +84,8 @@
             $timestamp.height(tweetHeight);
             $username.height(tweetHeight);
 
+            $username.css('color', userColors[tweet.user]);
+
             numTweets++;
             }
 
@@ -90,6 +102,9 @@
         $('.col-tweets').on('mouseleave', '.tweet', function() {
           $(this).toggleClass('highlight');
         });
+        $('.button').on('click', function() {
+          javascript: console.log("button pressed");
+        })
 
         updateTweets();
 

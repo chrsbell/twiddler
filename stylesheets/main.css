@@ -31,6 +31,8 @@ time, mark, audio, video {
 }*/
 
 body {
+  background-color: black;
+  color: white;
   width: 80%;
   margin-left: 10%;
   margin-right: 10%;
@@ -103,8 +105,6 @@ textarea,
 }
 
 .tweet {
-  /*margin-left: 20%;
-  margin-right: 20%;*/
   display: block;
   /*border: 2px solid #949599;*/
   border-radius: 2px;
@@ -114,10 +114,6 @@ textarea,
 .highlight {
   color:rgb(17, 92, 153);
 }
-
-/*.tweet:hover {
-color: rgba(0, 0, 0, .5);
-}*/
 
 .username {
   padding-right: 0;
