@@ -30,54 +30,52 @@ time, mark, audio, video {
   border: 1px solid red !important;
 }
 
-/*body {
-  width: 50%;
-  margin-left: 25%;
-  margin-right: 25%;
-  text-align: center;
-}*/
+body {
+  width: 80%;
+  margin-left: 10%;
+  margin-right: 10%;
+}
 
 h1 {
   font-weight: bold;
   font-size: x-large;
 }
 
-.grid {
-  margin: 0 auto;
-  width: 960px;
+textarea,
+.button {
+  display: block;
+}
+
+.main-grid {
+  margin: 0;
+  width: 60%;
+  display: inline-block;
   overflow-y: scroll;
   height:480px;
 }
 
-/*
-  ========================================
-  Rows
-  ========================================
-*/
-
-.row,
-.row-alt {
-  min-width: 960px;
-}
-.row {
-  background: #fff;
-  padding: 66px 0 44px 0;
+.side-grid {
+  margin: 0;
+  width: 35%;
+  display: inline-block;
+  overflow-y: scroll;
+  height:480px;
 }
 
 /* column for list of users */
 .col-userlist {
-  /*margin-left: 75%;*/
-  width: 25%;
+  width: 50%;
   display: inline-block;
+  vertical-align: top;
 }
 
 /* column for tweets */
 .col-tweets {
-  width: 49%;
+  width: 74%;
   display: inline-block;
 }
 
-/* column for usernames/timestamps */
+/* wrapper column for usernames/timestamps */
 .col-usernames-timestamps {
   width: 25%;
   display: inline-block;
@@ -95,7 +93,6 @@ h1 {
 /* column for usernames */
 .col-usernames {
   text-align: left;
-  /*margin-left: 50%;*/
   width: 49%;
   display: inline-block;
   vertical-align: top;
@@ -104,8 +101,7 @@ h1 {
 .tweet {
   /*margin-left: 20%;
   margin-right: 20%;*/
-  display: inline-block;
-  width: 60%;
+  display: block;
   /*border: 2px solid #949599;*/
   border-radius: 2px;
   text-align: left;

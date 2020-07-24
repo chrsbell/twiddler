@@ -11,11 +11,12 @@
     </header>
     <textarea name="tweet-input">Say something!</textarea>
     <input class="button" type="submit" name="tweet-submit" value="Twiddle">
-    <div class="row">
-      <div class="grid">>
-        <div class="col-usernames-timestamps"></div>
-        <div class="col-tweets"></div>
-      </div>
+    <div class="main-grid">
+      <div class="col-usernames-timestamps"></div>
+      <div class="col-tweets"></div>
+    </div>
+    <div class="side-grid">
+      <div class="col-userlist"></div>
     </div>
     <script>
 
@@ -25,7 +26,8 @@
         var $stream = $('.col-tweets');
         var period = 1000;
 
-        var index = 0;
+        var numTweets = 0;
+        var numUsers = 0;
         var usersInCallback = [];
 
         var $userinfo = $('.col-usernames-timestamps');
@@ -36,8 +38,8 @@
 
         var updateTweets = function() {
           //update stream with new tweets every 'period'
-          while(index < streams.home.length){
-            var tweet = streams.home[index];
+          while(numTweets < streams.home.length){
+            var tweet = streams.home[numTweets];
 
             //create elements for tweet info
             var $username = $('<h4 class="username col-usernames ' + tweet.user + '"></h4>');
@@ -65,10 +67,20 @@
               usersInCallback.push(tweet.user)
             }
 
-            index++;
+            numTweets++;
 
           }
+
+          while(numUsers < users.length) {
+            var $user = $('<h4 class="username"</h4>');
+            $user.text(users[numUsers]);
+            var $userlist = $('.col-userlist');
+            $userlist.append($user);
+            numUsers++;
+          }
+
           setTimeout(updateTweets, period);
+
         };
 
         updateTweets();
