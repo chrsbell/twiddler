@@ -76,7 +76,7 @@ textarea,
 }
 
 /* wrapper column for usernames/timestamps */
-.col-usernames-timestamps {
+.col-userinfo {
   width: 25%;
   display: inline-block;
   vertical-align: top;
@@ -85,7 +85,7 @@ textarea,
 /* column for timestamps */
 .col-timestamps {
   text-align: right;
-  width: 49%;
+  width: 35%;
   display: inline-block;
   vertical-align: top;
 }
@@ -93,7 +93,7 @@ textarea,
 /* column for usernames */
 .col-usernames {
   text-align: left;
-  width: 49%;
+  width: 60%;
   display: inline-block;
   vertical-align: top;
 }
