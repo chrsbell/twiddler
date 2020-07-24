@@ -111,9 +111,13 @@ textarea,
   text-align: left;
 }
 
-.tweet:hover {
-color: rgba(0, 0, 0, .5);
+.highlight {
+  color:rgb(17, 92, 153);
 }
+
+/*.tweet:hover {
+color: rgba(0, 0, 0, .5);
+}*/
 
 .username {
   padding-right: 0;
