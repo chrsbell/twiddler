@@ -83,7 +83,7 @@ h1 {
 .col-tweets {
   width: 70%;
   display: inline-block;
-  /*border-left: 1px solid;*/
+  border-left: 1px solid;
 }
 
 /* wrapper column for usernames/timestamps */

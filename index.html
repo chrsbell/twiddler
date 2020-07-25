@@ -39,9 +39,10 @@
         var currentUser = 'home';
 
         window.visitor = 'user';
+        streams.users[visitor] = [];
 
         //colors for each user
-        var colors = ['blanchedalmond', 'palegoldenrod', 'forestgreen', 'cyan'];
+        var colors = ['blanchedalmond', 'palegoldenrod', 'forestgreen', 'cyan', 'red'];
 
         //map each user to a color
         var userColors = {};
@@ -125,7 +126,7 @@
         var switchUser = function(event) {
           //exclude the '@' symbol
           currentUser = $(this).text().replace('@', '');
-          javascript: console.log(currentUser);
+          //javascript: console.log(currentUser);
           //clear and show the screen
           $('p').remove();
           $('h4').remove();
@@ -150,9 +151,12 @@
 
         //allow user to tweet
         $('textarea').keydown(function(e) {
+          //if 'enter was pressed'
           if (e.which === 13){
             var text = $.trim($('textarea').val());
             if (text.length > 0) {
+              writeTweet(text);
+              streams.users[visitor][streams.users[visitor].length - 1].created_at = new Date();
               $('textarea').val('');
             }
           }
