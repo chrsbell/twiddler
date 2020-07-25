@@ -31,7 +31,7 @@
         var $usernames = $('.col-usernames');
         var $timestamps = $('.col-timestamps');
 
-        var period = 1000;
+        var period = 100;
 
         var numTweets = 0;
         var numUsers = 0;
@@ -122,11 +122,26 @@
 
         }
 
+        //auto scroll to bottom of tweets unless user holds scroll bar
+        var autoScroll = function() {
+          var scrollTop = $('.main-grid').scrollTop();
+          var scrollBottom = scrollTop + $('.main-grid').height();
+          //javascript: console.log($.getScrollbarWidth());
+          var scrollHeight = $('.main-grid').prop('scrollHeight');
+          var isScrolledToBottom = scrollBottom >= scrollHeight - 30;
+          //javascript: console.log(isScrolledToBottom);
+          if (isScrolledToBottom) {
+            $('.main-grid').scrollTop(scrollHeight);
+          }
+            setTimeout(autoScroll, 5);
+        }
+
+        autoScroll();
+
         //callbacks to switch users
         var switchUser = function(event) {
           //exclude the '@' symbol
           currentUser = $(this).text().replace('@', '');
-          //javascript: console.log(currentUser);
           //clear and show the screen
           $('p').remove();
           $('h4').remove();
