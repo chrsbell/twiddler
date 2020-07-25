@@ -84,8 +84,6 @@ h1 {
   width: 70%;
   display: inline-block;
   border-left: 1px solid;
-  /* allow newline/tab esc characters */
-  white-space: pre-wrap;
 }
 
 /* wrapper column for usernames/timestamps */

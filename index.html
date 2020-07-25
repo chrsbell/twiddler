@@ -101,6 +101,8 @@
 
             if (tweet.user === bot) {
               $tweet.addClass('highlight');
+              /* allow tab/newline esc characters for logo */
+              $tweet.css('white-space', 'pre-wrap');
             }
 
             //add the element info
@@ -170,6 +172,8 @@
           numTweets = 0;
           updateTweets();
         }
+        $('.col-usernames').on('click', '.username', switchUser);
+        $('.col-userlist ul').on('click', 'li', switchUser);
 
         //fade on mouse over
         var fadeIn = function() {
@@ -178,8 +182,6 @@
         var fadeOut = function() {
           $(this).fadeTo(0.5, 1);
         }
-        $('.col-usernames').on('click', '.username', switchUser);
-        $('.col-userlist ul').on('click', 'li', switchUser);
         $('.col-userlist ul').on('mouseenter', 'li', fadeIn);
         $('.col-userlist ul').on('mouseleave', 'li', fadeOut);
         $('.col-usernames').on('mouseenter', '.username', fadeIn);
