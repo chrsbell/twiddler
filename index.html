@@ -53,8 +53,8 @@
         javascript: console.log(logo);
 
         //add users you are following to list on side
-        var $userlist = $('<ul></ul>');
         var $userCol = $('.col-userlist');
+        var $userlist = $('<ul></ul>');
         var $user = $('<li></li>');
         //link to home
         $user.text('home');
@@ -68,6 +68,7 @@
         }
         $userCol.append($userlist);
 
+        //display a tweet
         var showTweet = function(tweet) {
 
             //create elements for tweet info
@@ -115,24 +116,32 @@
 
         }
 
-        //callback functions
-        $('.col-usernames').on('click', '.username', function() {
-          javascript: console.log($(this).text());
+        //callbacks to switch users
+        var switchUser = function(event) {
           //exclude the '@' symbol
-          currentUser = $(this).text().slice(1);
+          currentUser = $(this).text().replace('@', '');
+          javascript: console.log(currentUser);
           //clear and show the screen
           $('p').remove();
           $('h4').remove();
           $('h5').remove();
           numTweets = 0;
           updateTweets();
-        });
-        $('.col-tweets').on('mouseenter', '.tweet', function() {
-          $(this).toggleClass('highlight');
-        });
-        $('.col-tweets').on('mouseleave', '.tweet', function() {
-          $(this).toggleClass('highlight');
-        });
+        }
+        var fadeIn = function() {
+          $(this).fadeTo(0.5, 0.8);
+        }
+        var fadeOut = function() {
+          $(this).fadeTo(0.5, 1);
+        }
+        $('.col-usernames').on('click', '.username', switchUser);
+        $('.col-userlist ul').on('click', 'li', switchUser);
+        $('.col-userlist ul').on('mouseenter', 'li', fadeIn);
+        $('.col-userlist ul').on('mouseleave', 'li', fadeOut);
+        $('.col-usernames').on('mouseenter', '.username', fadeIn);
+        $('.col-usernames').on('mouseleave', '.username', fadeOut);
+        $('.col-tweets').on('mouseenter', '.tweet', fadeIn);
+        $('.col-tweets').on('mouseleave', '.tweet', fadeOut);
 
         updateTweets();
 
