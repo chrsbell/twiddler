@@ -54,22 +54,22 @@
         javascript: console.log(logo);
 
         //add users you are following to list on side
+        var $userlist = $('<ul></ul>');
+        var $userCol = $('.col-userlist');
+        var $user = $('<li></li>');
+        //link to home
+        $user.text('home');
+        $userlist.append($user);
+
         while (numUsers < users.length) {
-          var $user = $('<h4 class="username"</h4>');
+          $user = $('<li></li>');
           $user.text(users[numUsers]);
-          var $userlist = $('.col-userlist');
           $userlist.append($user);
           numUsers++;
         }
+        $userCol.append($userlist);
 
-        //update stream with new tweets every 'period'
-        var updateTweets = function() {
-
-          if (currentUser === 'home') {
-
-            while (numTweets < streams.home.length){
-            var tweet = streams.home[numTweets];
-
+        var showTweet = function(tweet) {
             //create elements for tweet info
             var $username = $('<h4 class="username"></h4>');
             var $timestamp = $('<h5 class="timestamp"></h5>');
@@ -91,34 +91,40 @@
             $username.height(tweetHeight);
 
             $username.css('color', userColors[tweet.user]);
+        }
 
-            numTweets++;
+        //update stream with new tweets every 'period'
+        var updateTweets = function() {
+          //home screen
+          if (currentUser === 'home') {
+            while (numTweets < streams.home.length){
+              var tweet = streams.home[numTweets];
+              showTweet(tweet);
+              numTweets++;
             }
-
-            setTimeout(updateTweets, period);
-
           } else {
+            //show user timeline
             while (numTweets < streams.users[currentUser].length) {
               var tweet = streams.users[currentUser][numTweets];
-              //create elements for tweet info
-              var $username = $('<h4 class="username"></h4>');
-              var $timestamp = $('<h5 class="timestamp"></h5>');
-              var $tweet = $('<p class="tweet"></p>');
+              showTweet(tweet);
               numTweets++;
             }
           }
+          setTimeout(updateTweets, period);
 
         }
 
+        //callback functions
         $('.col-usernames').on('click', '.username', function() {
           javascript: console.log($(this).text());
           //exclude the '@' symbol
           currentUser = $(this).text().slice(1);
-          //clear the screen
+          //clear and show the screen
           $('p').remove();
-          $('h4').remove('username');
+          $('h4').remove();
           $('h5').remove();
           numTweets = 0;
+          updateTweets();
         });
         $('.col-tweets').on('mouseenter', '.tweet', function() {
           $(this).toggleClass('highlight');
