@@ -44,8 +44,9 @@ textarea {
   width: 95%;
   background-color: black;
   color: white;
-  caret-color: #39ff14;
+  caret-color: #009900;
   height: 19px;
+  resize: none;
 }
 
 h1 {
@@ -117,7 +118,7 @@ h1 {
 }
 
 .highlight {
-  color: #00E500;
+  color: #009900;
 }
 
 /* Scrollbar */
