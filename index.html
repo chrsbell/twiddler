@@ -30,22 +30,29 @@
         var $userinfo = $('.col-userinfo');
         var $usernames = $('.col-usernames');
         var $timestamps = $('.col-timestamps');
+        var $userCol = $('.col-userlist');
 
+        //how often to update tweets in ms
         var period = 100;
 
         var numTweets = 0;
         var numUsers = 0;
+
+        //setup bot, user and home
+        var bot = 'bot';
+        var home = 'home';
+        window.visitor = 'user';
+        streams.users[visitor] = [];
+        streams.users[bot] = [];
+
         //which user's tweets are we showing
         var currentUser = 'home';
 
-        var bot = 'bot';
-
-        window.visitor = 'user';
-
-        //colors for each user
-        var colors = ['blanchedalmond', 'lime', 'coral', 'mediumblue'];
-
         //map each user to a color
+        var userColors = {};
+        var colors = ['blanchedalmond', 'lime', 'coral', 'mediumblue'];
+        userColors[visitor] = 'red';
+        userColors[bot] = 'yellow';
         var userColors = {};
         var index = 0;
         for (var user in streams.users) {
@@ -53,35 +60,27 @@
           index = (index + 1) % colors.length;
         }
 
-        streams.users[visitor] = [];
-        streams.users[bot] = []
-        userColors[visitor] = 'red';
-        userColors[bot] = 'yellow';
-
         var logo = ' _____          _     _     _ _           \n/__   __      _(_) __| | __| | | ___ _ __ \n  / /\\\\ \\ /\\ / | |/ _` |/ _` | |/ _ | \'__|\n / /   \\ V  V /| | (_| | (_| | |  __| |   \n \\/     \\_/\\_/ |_|\\__,_|\\__,_|_|\\___|_|   \n                                          \n';
-        javascript: console.log(logo);
 
-        var $userCol = $('.col-userlist');
+        //add each user to side bar
         var $userlist = $('<ul></ul>');
-        var $user = $('<li></li>');
-        //link to home
-        $user.text('home');
-        $userlist.append($user);
-        //link to user
-        $user = $('<li></li>');
-        $user.text(visitor);
-        $userlist.append($user);
-        //link to bot
-        $user = $('<li></li>');
-        $user.text(bot);
-        $userlist.append($user);
+
+        var addUser = function(user) {
+          var $user = $('<li></li>');
+          $user.text(user);
+          $userlist.append($user);
+        }
+
+        addUser(home);
+        addUser(user);
+        addUser(bot);
+
         //add other users you are following to list on side
         while (numUsers < users.length) {
-          $user = $('<li></li>');
-          $user.text(users[numUsers]);
-          $userlist.append($user);
+          addUser(users[numUsers]);
           numUsers++;
         }
+
         $userCol.append($userlist);
 
         var tweet = {};
@@ -123,7 +122,7 @@
             $username.css('color', userColors[tweet.user]);
         }
 
-        //update stream with new tweets every 'period'
+        //update stream with new tweets
         var updateTweets = function() {
 
           var userStream;
