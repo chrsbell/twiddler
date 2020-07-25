@@ -45,7 +45,7 @@ textarea {
   background-color: black;
   color: white;
   caret-color: #39ff14;
-  height: 17px;
+  height: 19px;
 }
 
 h1 {
@@ -60,7 +60,7 @@ h1 {
   width: 70%;
   display: inline-block;
   overflow-y: scroll;
-  height:480px;
+  height:720px;
 }
 
 .side-grid {
@@ -68,7 +68,7 @@ h1 {
   width: 25%;
   display: inline-block;
   overflow-y: scroll;
-  height:480px;
+  height:720px;
 }
 
 /* column for list of users */
@@ -84,6 +84,8 @@ h1 {
   width: 70%;
   display: inline-block;
   border-left: 1px solid;
+  /* allow newline/tab esc characters */
+  white-space: pre-wrap;
 }
 
 /* wrapper column for usernames/timestamps */
@@ -117,9 +119,23 @@ h1 {
 }
 
 .highlight {
-  color:rgb(17, 92, 153);
+  color: #00E500;
 }
 
-.username {
-  padding-right: 0;
+/* Scrollbar */
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: black;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgb(175, 175, 175);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }

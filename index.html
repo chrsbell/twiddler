@@ -7,9 +7,9 @@
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&display=swap" rel="stylesheet">
   </head>
   <body>
-    <header>
+    <!--<header>
       <h1>Twiddler</h1>
-    </header>
+    </header>!-->
     <div class="main-grid">
       <div class="col-userinfo">
         <div class="col-usernames"></div>
@@ -38,11 +38,12 @@
         //which user's tweets are we showing
         var currentUser = 'home';
 
+        var bot = 'bot';
+
         window.visitor = 'user';
-        streams.users[visitor] = [];
 
         //colors for each user
-        var colors = ['blanchedalmond', 'palegoldenrod', 'forestgreen', 'cyan', 'red'];
+        var colors = ['blanchedalmond', 'lime', 'coral', 'mediumblue'];
 
         //map each user to a color
         var userColors = {};
@@ -51,6 +52,11 @@
           userColors[user.toString()] = colors[index];
           index = (index + 1) % colors.length;
         }
+
+        streams.users[visitor] = [];
+        streams.users[bot] = []
+        userColors[visitor] = 'red';
+        userColors[bot] = 'yellow';
 
         var logo = ' _____          _     _     _ _           \n/__   __      _(_) __| | __| | | ___ _ __ \n  / /\\\\ \\ /\\ / | |/ _` |/ _` | |/ _ | \'__|\n / /   \\ V  V /| | (_| | (_| | |  __| |   \n \\/     \\_/\\_/ |_|\\__,_|\\__,_|_|\\___|_|   \n                                          \n';
         javascript: console.log(logo);
@@ -65,6 +71,10 @@
         $user = $('<li></li>');
         $user.text(visitor);
         $userlist.append($user);
+        //link to bot
+        $user = $('<li></li>');
+        $user.text(bot);
+        $userlist.append($user);
         //add other users you are following to list on side
         while (numUsers < users.length) {
           $user = $('<li></li>');
@@ -74,6 +84,13 @@
         }
         $userCol.append($userlist);
 
+        var tweet = {};
+        tweet.user = bot;
+        tweet.message = logo;
+        tweet.created_at = new Date();
+        streams.users[bot].push(tweet);
+        streams.home.unshift(tweet);
+
         //display a tweet
         var showTweet = function(tweet) {
 
@@ -81,6 +98,10 @@
             var $username = $('<h4 class="username"></h4>');
             var $timestamp = $('<h5 class="timestamp"></h5>');
             var $tweet = $('<p class="tweet"></p>');
+
+            if (tweet.user === bot) {
+              $tweet.addClass('highlight');
+            }
 
             //add the element info
             $username.text('@' + tweet.user);
@@ -128,7 +149,7 @@
           var scrollBottom = scrollTop + $('.main-grid').height();
           //javascript: console.log($.getScrollbarWidth());
           var scrollHeight = $('.main-grid').prop('scrollHeight');
-          var isScrolledToBottom = scrollBottom >= scrollHeight - 30;
+          var isScrolledToBottom = scrollBottom >= scrollHeight - 60;
           //javascript: console.log(isScrolledToBottom);
           if (isScrolledToBottom) {
             $('.main-grid').scrollTop(scrollHeight);
@@ -149,6 +170,8 @@
           numTweets = 0;
           updateTweets();
         }
+
+        //fade on mouse over
         var fadeIn = function() {
           $(this).fadeTo(0.5, 0.8);
         }
@@ -165,7 +188,7 @@
         $('.col-tweets').on('mouseleave', '.tweet', fadeOut);
 
         //allow user to tweet
-        $('textarea').keydown(function(e) {
+        $('textarea').keypress(function(e) {
           //if 'enter was pressed'
           if (e.which === 13){
             var text = $.trim($('textarea').val());
