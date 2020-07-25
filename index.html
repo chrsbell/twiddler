@@ -38,6 +38,8 @@
         //which user's tweets are we showing
         var currentUser = 'home';
 
+        window.visitor = 'user';
+
         //colors for each user
         var colors = ['blanchedalmond', 'palegoldenrod', 'forestgreen', 'cyan'];
 
@@ -52,14 +54,17 @@
         var logo = ' _____          _     _     _ _           \n/__   __      _(_) __| | __| | | ___ _ __ \n  / /\\\\ \\ /\\ / | |/ _` |/ _` | |/ _ | \'__|\n / /   \\ V  V /| | (_| | (_| | |  __| |   \n \\/     \\_/\\_/ |_|\\__,_|\\__,_|_|\\___|_|   \n                                          \n';
         javascript: console.log(logo);
 
-        //add users you are following to list on side
         var $userCol = $('.col-userlist');
         var $userlist = $('<ul></ul>');
         var $user = $('<li></li>');
         //link to home
         $user.text('home');
         $userlist.append($user);
-
+        //link to user
+        $user = $('<li></li>');
+        $user.text(visitor);
+        $userlist.append($user);
+        //add other users you are following to list on side
         while (numUsers < users.length) {
           $user = $('<li></li>');
           $user.text(users[numUsers]);
@@ -103,7 +108,7 @@
             //home screen
             userStream = streams.home;
           } else {
-            //show user timeline
+            //user timeline
             userStream = streams.users[currentUser];
           }
           while (numTweets < userStream.length) {
@@ -142,6 +147,16 @@
         $('.col-usernames').on('mouseleave', '.username', fadeOut);
         $('.col-tweets').on('mouseenter', '.tweet', fadeIn);
         $('.col-tweets').on('mouseleave', '.tweet', fadeOut);
+
+        //allow user to tweet
+        $('textarea').keydown(function(e) {
+          if (e.which === 13){
+            var text = $.trim($('textarea').val());
+            if (text.length > 0) {
+              $('textarea').val('');
+            }
+          }
+        });
 
         updateTweets();
 
