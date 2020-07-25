@@ -147,31 +147,26 @@
             //user timeline
             userStream = streams.users[currentUser];
           }
-          while (numTweets < userStream.length) {
+          //show a tweet one at a time
+          if (numTweets < userStream.length) {
             var tweet = userStream[numTweets];
             showTweet(tweet);
             numTweets++;
           }
 
-          setTimeout(updateTweets, period);
-
-        }
-
-        //auto scroll to bottom of tweets unless user holds scroll bar
-        var autoScroll = function() {
+          //auto scroll to bottom of tweets unless user moves scroll bar
           var scrollTop = $('.main-grid').scrollTop();
           var scrollBottom = scrollTop + $('.main-grid').height();
-          //javascript: console.log($.getScrollbarWidth());
           var scrollHeight = $('.main-grid').prop('scrollHeight');
-          var isScrolledToBottom = scrollBottom >= scrollHeight - 60;
-          //javascript: console.log(isScrolledToBottom);
+          //javascript: console.log(parseInt($('body').css('line-height')));
+          var isScrolledToBottom = scrollBottom >= scrollHeight - parseInt($('body').css('line-height'));
           if (isScrolledToBottom) {
             $('.main-grid').scrollTop(scrollHeight);
           }
-            setTimeout(autoScroll, 5);
-        }
 
-        autoScroll();
+          setTimeout(updateTweets, period);
+
+        }
 
         //callbacks to switch users
         var switchUser = function(event) {
