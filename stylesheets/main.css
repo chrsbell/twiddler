@@ -49,6 +49,14 @@ textarea {
   resize: none;
 }
 
+/* text selector colors */
+::selection {
+  background: #00FF00; /* WebKit/Blink Browsers */
+}
+::-moz-selection {
+  background: #00FF00; /* Gecko Browsers */
+}
+
 h1 {
   padding: 10px;
   font-weight: bold;
